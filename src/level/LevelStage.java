@@ -15,16 +15,13 @@ import visual.dynamic.described.Stage;
 public class LevelStage
 {
 
-  int width;
-  int height;
-
   private AbstractProtagonistSprite protagonist;
   private Level level;
   private Stage stage;
 
   /**
    * Constructs a LevelStage with the specified Level terrain, visualized at the given width and
-   * height
+   * height.
    * 
    * @param inLevel
    *          Level to manage
@@ -34,10 +31,11 @@ public class LevelStage
    *          visualization width
    * @param height
    *          visualization height
-   * @param metronome
-   *          time step
+   * @param timeStep
+   *          metronome time step
    * @throws InvalidParameterException
-   *           if the protagonist parameter is null.
+   *           if the protagonist parameter is null, if the height or width are too low, or if the
+   *           timeStep is negative.
    */
   public LevelStage(Level inLevel, AbstractProtagonistSprite protagonist, int width, int height,
       int timeStep) throws InvalidParameterException
@@ -57,9 +55,6 @@ public class LevelStage
     {
       throw new InvalidParameterException("Time step must be a positive value");
     }
-
-    this.width = width;
-    this.height = height;
 
     level = inLevel;
     stage = new Stage(timeStep);
@@ -90,6 +85,16 @@ public class LevelStage
   }
 
   /**
+   * Returns the height of the decorated stage's visualization view.
+   * 
+   * @return height
+   */
+  public int getHeight()
+  {
+    return stage.getView().getHeight();
+  }
+
+  /**
    * Returns the Level being managed by this LevelStage.
    * 
    * @return the decorated level
@@ -107,6 +112,16 @@ public class LevelStage
   public Stage getStage()
   {
     return stage;
+  }
+
+  /**
+   * Returns the width if the decorated stage's visualization view.
+   * 
+   * @return width
+   */
+  public int getWidth()
+  {
+    return stage.getView().getWidth();
   }
 
   /**

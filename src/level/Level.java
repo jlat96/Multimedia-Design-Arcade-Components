@@ -21,7 +21,7 @@ public class Level extends AbstractCollection<AbstractTerrainSprite>
     implements Collection<AbstractTerrainSprite>, Iterable<AbstractTerrainSprite>
 {
 
-  public final static int DEFAULT_LEVEL_END_OFFSET = 3000;
+  public static final int DEFAULT_LEVEL_END_OFFSET = 3000;
 
   private LinkedList<AbstractTerrainSprite> terrain;
   private List<Integer> checkpoints;
@@ -106,6 +106,14 @@ public class Level extends AbstractCollection<AbstractTerrainSprite>
     return getLevelEndTime(DEFAULT_LEVEL_END_OFFSET);
   }
 
+  /**
+   * Returns the integer value of the highest startTime owned by a TerrainSprite (e.g. the last
+   * sprite to spawn) plus the number of milliseconds specified by the offset parameter.
+   * 
+   * @param offset
+   *          milliseconds to add
+   * @return Level end time
+   */
   public int getLevelEndTime(int offset)
   {
     int end = 0;
